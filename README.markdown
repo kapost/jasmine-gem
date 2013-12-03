@@ -47,17 +47,17 @@ This uses PhantomJS to load and run the Jasmine suite.
 
 Expects to have a specs_loaded event bound to window.
 
-'window.addEventListener('specs_loaded')
+`window.addEventListener('specs_loaded')`
 
 see example_boot.js, It was generated using 'jasmine copy_boot_js', and then modified.
 
 If you are using jasmine-gem, you can add this to your jasmine.yml
-'''
+```
     boot_dir: spec/javascripts/support
 
     boot_files:
       - boot.js
-'''
+```
 
 ## Configuration
 
