@@ -8,7 +8,7 @@
   <% css_files.each do |css_file| %>
     <link rel="stylesheet" href="<%= css_file %>" type="text/css" media="screen"/>
   <% end %>
-  <% js_files.each do |js_file| %>
+  <% js_files.select {|js| !(js =~ /_spec\.js$/)}.each do |js_file| %>
   <script src="<%= js_file %>" type="text/javascript"></script>
   <% end %>
 
@@ -16,5 +16,23 @@
 <!-- TODO: turbolinks breaks spec filter links -->
 <body data-no-turbolink>
 <div id="jasmine_content"></div>
+
+<script>
+  (function(factory) {
+    if (typeof define === 'function' && define.amd) {
+      require(
+        [<%= js_files.select {|js| js =~ /_spec\.js$/}.map {|js| "'#{js}'" }.join(',') %>],
+        factory);
+    } else {
+      factory();
+    }
+  }(function() {
+      var evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
+      evt.initCustomEvent('specs_loaded', false, false, null);
+      window.dispatchEvent(evt);
+    }
+  ));
+</script>
+
 </body>
 </html>

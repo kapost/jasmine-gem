@@ -43,6 +43,22 @@ For Continuous Integration environments, add this task to the project build step
 
 This uses PhantomJS to load and run the Jasmine suite.
 
+## Boot.js
+
+Expects to have a specs_loaded event bound to window.
+
+'window.addEventListener('specs_loaded')
+
+see example_boot.js, It was generated using 'jasmine copy_boot_js', and then modified.
+
+If you are using jasmine-gem, you can add this to your jasmine.yml
+'''
+    boot_dir: spec/javascripts/support
+
+    boot_files:
+      - boot.js
+'''
+
 ## Configuration
 
 Customize `spec/javascripts/support/jasmine.yml` to enumerate the source files, stylesheets, and spec files you would like the Jasmine runner to include.
