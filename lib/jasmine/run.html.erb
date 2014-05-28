@@ -19,17 +19,16 @@
   (function(factory) {
     if (typeof define === 'function' && define.amd) {
     require(
-      [<%= js_files.select {|js| js =~ /_spec\.js$/}.map {|js| "'#{js}'" }.join(',') %>],
-        factory);
+      [<%= js_files.select {|js| js =~ /_spec\.js$/}.map {|js| "'#{js}'" }.join(',') %>], factory);
       } else {
         factory();
       }
     }(function() {
-        var evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
-        evt.initCustomEvent('specs_loaded', false, false, null);
-        window.dispatchEvent(evt);
-      }
-    ));
- +</script>
+      var evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
+      evt.initCustomEvent('specs_loaded', false, false, null);
+      window.dispatchEvent(evt);
+    }
+  ));
+</script>
 </body>
 </html>
