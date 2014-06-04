@@ -45,7 +45,12 @@ namespace :jasmine do
     port = ENV['JASMINE_PORT'] || 8888
     puts "your tests are here:"
     puts "  http://localhost:#{port}/"
-    Jasmine.load_configuration_from_yaml
+    begin
+      Jasmine.load_configuration_from_yaml(ENV['JASMINE_CONFIG_PATH'])
+    rescue Jasmine::ConfigNotFound => e
+      puts e.message
+      exit 1
+    end
     app = Jasmine::Application.app(Jasmine.config)
     Jasmine::Server.new(port, app).start
   end
