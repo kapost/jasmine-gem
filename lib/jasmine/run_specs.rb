@@ -12,7 +12,7 @@ jasmine_yml = File.join(Dir.pwd, 'spec', 'javascripts', 'support', 'jasmine.yml'
 if File.exist?(jasmine_yml)
 end
 
-Jasmine.load_configuration_from_yaml
+Jasmine.load_configuration_from_yaml(ENV['JASMINE_CONFIG_PATH'])
 
 config = Jasmine.config
 
